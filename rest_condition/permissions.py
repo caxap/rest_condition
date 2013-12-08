@@ -118,5 +118,8 @@ class Condition(object):
     def __invert__(self):
         return self.Not(self)
 
+    def __call__(self):
+        return self
+
 # Define some shortcuts
 (C, And, Or, Not) = (Condition, Condition.And, Condition.Or, Condition.Not)

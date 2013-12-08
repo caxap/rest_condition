@@ -27,7 +27,8 @@ classifiers = [
 ]
 
 install_requires = [
-    'django >= 1.4'
+    'django >= 1.3',
+    'djangorestframework',
 ]
 
 
