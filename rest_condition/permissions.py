@@ -112,7 +112,13 @@ class Condition(object):
     def __or__(self, perm_or_cond):
         return self.Or(self, perm_or_cond)
 
+    def __ior__(self, perm_or_cond):
+        return self.Or(self, perm_or_cond)
+
     def __and__(self, perm_or_cond):
+        return self.And(self, perm_or_cond)
+
+    def __iand__(self, perm_or_cond):
         return self.And(self, perm_or_cond)
 
     def __invert__(self):

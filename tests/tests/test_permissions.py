@@ -50,6 +50,26 @@ class PermissionsTestCase(TestCase):
         else:
             self.assertFalse(result)
 
+    def test_conditional_permissions_with_assigment(self):
+
+        perm1 = C(TruePermission)
+        perm1 |= ~C(TruePermission)
+        perm1 |= FalsePermission
+
+        class View1(TestView):
+            permission_classes = [perm1]
+
+        self.assertViewPermission(View1, True)
+
+        perm2 = C(TruePermission)
+        perm2 &= TruePermission
+        perm2 &= ~C(FalsePermission)
+
+        class View2(TestView):
+            permission_classes = [perm2]
+
+        self.assertViewPermission(View2, True)
+
     def test_single_conditional_permission_true(self):
 
         class View1(TestView):
