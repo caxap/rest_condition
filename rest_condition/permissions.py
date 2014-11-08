@@ -102,6 +102,8 @@ class Condition(object):
         if reduced_result is not _NONE:
             return not reduced_result if self.negated else reduced_result
 
+        return False
+
     def has_object_permission(self, request, view, obj):
         return self.evaluate_permissions('has_object_permission',
                                          request, view, obj)
