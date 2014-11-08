@@ -4,7 +4,7 @@
 from .permissions import *  # noqa
 
 __title__ = 'rest_condition'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Maxim Kamenkov'
 __license__ = 'MIT'
 
