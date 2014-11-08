@@ -16,7 +16,7 @@ author_email = 'mkamenkov@gmail.com'
 license = 'MIT'
 keywords = 'django, rest, restframework, permissions'
 classifiers = [
-    'Development Status :: 3 - Beta',
+    'Development Status :: 4 - Beta',
     'Framework :: Django',
     'Environment :: Web Environment',
     'Intended Audience :: Developers',
