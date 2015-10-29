@@ -5,6 +5,7 @@ from setuptools import setup
 import re
 import os
 import sys
+import codecs
 
 
 name = 'rest_condition'
@@ -16,14 +17,17 @@ author_email = 'mkamenkov@gmail.com'
 license = 'MIT'
 keywords = 'django, rest, restframework, permissions'
 classifiers = [
-    'Development Status :: 4 - Beta',
+    'Development Status :: 5 - Production/Stable',
     'Framework :: Django',
-    'Environment :: Web Environment',
     'Intended Audience :: Developers',
+    'Natural Language :: English',
     'License :: OSI Approved :: MIT License',
-    'Operating System :: OS Independent',
     'Programming Language :: Python',
-    'Topic :: Software Development :: Libraries',
+    'Programming Language :: Python :: 2.6',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4'
 ]
 
 install_requires = [
@@ -37,7 +41,15 @@ def get_version(package):
     Return package version as listed in `__version__` in `init.py`.
     """
     init_py = open(os.path.join(package, '__init__.py')).read()
-    return re.search("^__version__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(1)
+    version = re.search("^__version__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(1)
+    if not version:
+        raise RuntimeError('Cannot find version information')
+    return version
+
+
+def get_readme(package):
+    with codecs.open('README.rst', 'r', 'utf-8') as fd:
+        return fd.read()
 
 
 def get_packages(package):
@@ -73,13 +85,13 @@ if sys.argv[-1] == 'publish':
     print("  git push --tags")
     sys.exit()
 
-
 setup(
     name=name,
     version=get_version(package),
     url=url,
     license=license,
     description=description,
+    long_description=get_readme(package),
     author=author,
     author_email=author_email,
     packages=get_packages(package),
