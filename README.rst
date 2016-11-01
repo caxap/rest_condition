@@ -73,7 +73,7 @@ License
 
 The MIT License (MIT)
 
-Contributed by `Maxim Kamenkov`_
+Contributed by `Max Kamenkov`_
 
 .. _django-rest-framework: http://django-rest-framework.org/
 .. _Maxim Kamenkov: https://github.com/caxap/
