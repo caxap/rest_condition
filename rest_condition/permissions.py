@@ -62,6 +62,7 @@ class Condition(object):
     >>> cond1 = C(Perm1, Perm2, Perm3, Perm4,
     >>>           reduce_op=operator.add, lazy_until=3, negated=True)
     '''
+
     @classmethod
     def And(cls, *perms_or_conds):
         return cls(reduce_op=operator.and_, lazy_until=False, *perms_or_conds)
@@ -94,7 +95,8 @@ class Condition(object):
             if reduced_result is _NONE:
                 reduced_result = result
             else:
-                reduced_result = self.reduce_op(reduced_result, result)
+                reduced_result = self.reduce_op(
+                    reduced_result() if callable(reduced_result) else reduced_result, result)
 
             if self.lazy_until is not None and self.lazy_until is reduced_result:
                 break
@@ -128,6 +130,7 @@ class Condition(object):
 
     def __call__(self):
         return self
+
 
 # Define some shortcuts
 (C, And, Or, Not) = (Condition, Condition.And, Condition.Or, Condition.Not)
