@@ -17,12 +17,12 @@ def _is_permission_factory(obj):
 class ConditionalPermission(permissions.BasePermission):
     '''
     Example of usage:
-    >>> class MyView(GinericView):
+    >>> class MyView(GenericView):
     >>>     permission_classes = (ConditionalPermission, )
     >>>     permission_condition = C(Perm1) | ~C(Perm2)
 
     Or you can just:
-    >>> class MyView(GinericView):
+    >>> class MyView(GenericView):
     >>>     permission_classes = (C(Perm1) | ~C(Perm2), )
     '''
     permission_condition_field = 'permission_condition'
